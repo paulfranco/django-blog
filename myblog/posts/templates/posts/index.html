@@ -13,20 +13,14 @@
   <body>
     <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
       <div class='container'>
-        <a class="navbar-brand" href="#">My Blog</a>
+        <a class="navbar-brand" href="{% url 'home' %}">My Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" href="{% url 'about' %}">About <span class="sr-only">(current)</span></a>
             </li>
           </ul>
           <span class="navbar-text">
@@ -36,12 +30,17 @@
       </div>
     </nav>
     <div class='container'>
-      <h1>Latest Posts</h1>
+      <h1 class='text-center'> Welcome to Paul's Blog</h1>
+      {% load static %}
+      <img src="{% static '/posts/home.jpg' %}" class="rounded mx-auto d-block"/>
+      <h1 class='text-center'>Latest Posts</h1>
+    <hr>
       {% for post in posts.all %}
-        <a href='{%url "post_detail" post.id %}'><strong>{{ post.title }}</strong></br></a>
-        {{ post.pub_date_pretty }}</br>
+        <a href='{%url "post_detail" post.id %}'><strong><h3>{{ post.title }}</h3></strong></a>
+        <h4>{{ post.pub_date_pretty }}</h4></br>
         <img src='/pics/{{ post.image }}' class='rounded mx-auto d-block' style='max-height: 350px;'/></br>
         {{ post.summary }}</br></br>
+        <hr>
       {% endfor %}
     </div>
     <!-- Optional JavaScript -->
